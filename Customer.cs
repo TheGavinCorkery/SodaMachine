@@ -38,7 +38,7 @@ namespace SodaMachine
         }
         public void AddCanToBackPack(Can can)
         {
-
+            backpack.cans.Add(can);
         }
     }
 }
