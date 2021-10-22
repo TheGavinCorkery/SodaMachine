@@ -22,6 +22,7 @@ namespace SodaMachine
                 if(coinName == coin.Name)
                 {
                     wallet.Coins.Remove(coin);
+                    wallet.totalValue -= coin.Value;
                     return coin;
                 }
             }
@@ -29,7 +30,11 @@ namespace SodaMachine
         }
         public void AddCoinsIntoWallet(List<Coin> coins)
         {
-            
+           foreach(var coin in coins)
+            {
+                wallet.Coins.Add(coin);
+                wallet.totalValue += coin.Value;
+            } 
         }
         public void AddCanToBackPack(Can can)
         {
