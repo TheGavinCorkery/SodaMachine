@@ -18,9 +18,7 @@ namespace SodaMachine
             int nicklesNeeded = 20;
             int pennyNeeded = 25;
 
-            int[] coinsNeeded = { quartersNeeded, dimesNeeded, nicklesNeeded, pennyNeeded };
-
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < pennyNeeded; i++)
             {
                 if(i < quartersNeeded)
                 {
