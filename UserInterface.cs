@@ -9,8 +9,8 @@ namespace SodaMachine
     public static class UserInterface
     {
         public static string SimulationMainMenu()
+        //Main menu prompting user to choose an option
         {
-            //Main menu prompting user to choose an option
             bool invalidUserSelection = true;
             string userInput;
             while (invalidUserSelection)
@@ -34,6 +34,7 @@ namespace SodaMachine
         }
 
         public static bool ValidateMainMenu(string userInput)
+        //Validation function that checks if 'user_input' argument is an int 1-4.
         {
             switch (userInput)
             {
@@ -52,12 +53,25 @@ namespace SodaMachine
 
         public static void DisplayCustomerWalletInfo(double totalValue)
         {
-            //Display what is remaining in Customer Wallet
+            //Display what is remaining in Customer Wallet *Currently not needed
         }
 
-        public static void DisplayWelcome()
+        public static bool DisplayWelcome()
+        //Asks user if they would like to make a purchase
         {
-            //Asks user if they would like to make a purchase
+            Console.WriteLine("\n Welcome to the soda machine. " +
+                "We only take coins as payment. \n" +
+                "Would you like to make a purchase (y/n) \n");
+            string userResponse = Console.ReadLine();
+            if(userResponse == "yes" || userResponse == "y")
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Please step aside to allow another customer to make a selection");
+                return false;
+            }
         }
 
         public static void OutputText(string text)
