@@ -8,8 +8,13 @@ namespace SodaMachine
 {
     class Wallet
     {
-        List<Coin> Coins;
-        double totalValue;
+        public List<Coin> Coins;
+        public double totalValue;
+
+        public Wallet()
+        {
+            FillWallet();
+        }
 
         public void FillWallet()
         {

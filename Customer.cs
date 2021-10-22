@@ -15,13 +15,21 @@ namespace SodaMachine
         {
             return null;
         }
-        public Coin GetCoinFromWallet(string coin)
+        public Coin GetCoinFromWallet(string coinName)
         {
+            foreach(var coin in wallet.Coins)
+            {
+                if(coinName == coin.Name)
+                {
+                    wallet.Coins.Remove(coin);
+                    return coin;
+                }
+            }
             return null;
         }
         public void AddCoinsIntoWallet(List<Coin> coins)
         {
-
+            
         }
         public void AddCanToBackPack(Can can)
         {
