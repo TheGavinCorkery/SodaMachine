@@ -16,16 +16,19 @@ namespace SodaMachine
             while(willProceed == true)
             {
                 string userOption = UserInterface.SimulationMainMenu();
-                if(Int32.Parse(userOption) == 0)
+                if(Int32.Parse(userOption) == 1)
                 {
                     sodaMachine.BeginTransaction(customer);
-                }else if (Int32.Parse(userOption) == 1)
+                }
+                else if (Int32.Parse(userOption) == 2)
                 {
                     customer.CheckCoinsInWallet();
-                }else if (Int32.Parse(userOption) == 2)
+                }
+                else if (Int32.Parse(userOption) == 3)
                 {
                     customer.CheckCansInBackpack();
-                }else
+                }
+                else
                 {
                     willProceed = false;
                 }

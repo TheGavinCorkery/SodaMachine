@@ -8,7 +8,7 @@ namespace SodaMachine
 {
     class Wallet
     {
-        public List<Coin> Coins;
+        public List<Coin> Coins = new List<Coin>();
         public double totalValue;
 
         public Wallet()
@@ -43,6 +43,7 @@ namespace SodaMachine
                 Coins.Add(new Penny());
                 totalValue += .01;
             }
+            totalValue = Math.Round(totalValue, 2);
         }
     }
 }
