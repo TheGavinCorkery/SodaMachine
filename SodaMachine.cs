@@ -48,20 +48,118 @@ namespace SodaMachine
             string selectedSodaName = UserInterface.SodaSelection();
             Can selectedSoda = GetSodaFromInventory(selectedSodaName);
             List<Coin> customerPayment = customer.GatherCoinsFromWallet(selectedSoda);
+            CalculateTransaction(customerPayment, selectedSoda, customer);
+            UserInterface.OutputText("Transaction Complete");
         }
 
-        private void CalculateTransaction(List<Coin> coins, Can can, Customer customer)
+        private void CalculateTransaction(List<Coin> customerPayment, Can selectedCan, Customer customer)
         {
-            double canCost = can.Price;
-            double coinTotal = TotalCoinValue(coins);
-            
-            if(customer.wallet.totalValue >= canCost)
+            double totalPaymentValue = TotalCoinValue(customerPayment);
+            if(totalPaymentValue < selectedCan.Price)
             {
-                BeginTransaction(customer);
-            }else if (customer.wallet.totalValue < canCost){
-                Console.WriteLine("Insufficent coins");
+                double changeValue = DetermineChange(totalPaymentValue, selectedCan.Price);
+                List<Coin>customerChange = GatherChange(changeValue);
+                if (customerChange == null)
+                {
+                    UserInterface.OutputText($"Dispensing {totalPaymentValue} back to customer");
+                    customer.AddCoinsIntoWallet(customerPayment);
+                    ReturnInventory(selectedCan);
+                }
+                else
+                {
+                    DepositCoinsIntoRegister(customerPayment);
+                    customer.AddCoinsIntoWallet(customerChange);
+                    customer.AddCanToBackPack(selectedCan);
+                    UserInterface.EndMessage(selectedCan, changeValue);
+                }
+            }else if (totalPaymentValue == selectedCan.Price){
+                DepositCoinsIntoRegister(customerPayment);
+                customer.AddCanToBackPack(selectedCan);
+                UserInterface.EndMessage(selectedCan, 0);
+            }else
+            {
+                UserInterface.OutputText("You do not have enough money to purchase this item, returning payment now.");
+                customer.AddCoinsIntoWallet(customerPayment);
+                ReturnInventory(selectedCan);
             }
         }
+
+        private void ReturnInventory(Can selectedCan)
+        {
+            inventory.Add(selectedCan);
+        }
+
+        private List<Coin> GatherChange(double changeValue)
+        {
+            List<Coin> changeList = new List<Coin>();
+            while(changeValue > 0)
+            {
+                if (changeValue >= .25 || RegisterHasCoin("quarter"))
+                {
+                    changeList.Add(GetCoinFromRegister("quarter"));
+                    changeValue -= .25;
+                }
+                else if (changeValue >= .10 || RegisterHasCoin("dime"))
+                {
+                    changeList.Add(GetCoinFromRegister("dime"));
+                    changeValue -= .10;
+                }
+                else if (changeValue >= .05 || RegisterHasCoin("nickle"))
+                {
+                    changeList.Add(GetCoinFromRegister("nickle"));
+                    changeValue -= .05;
+                }
+                else if (changeValue >= .01 || RegisterHasCoin("penny"))
+                {
+                    changeList.Add(GetCoinFromRegister("penny"));
+                    changeValue -= .01;
+                }else if (changeValue == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    UserInterface.OutputText("Error: Machine does not have enough change to complete transaction");
+                    DepositCoinsIntoRegister(changeList);
+                    changeList = null;
+                }
+            }
+            return changeList;
+        }
+
+        private void DepositCoinsIntoRegister(List<Coin> coins)
+        {
+            foreach(Coin coin in coins)
+            {
+                register.Add(coin);
+            }
+        }
+
+        private Coin GetCoinFromRegister(string coinName)
+        {
+            foreach(Coin coin in register)
+            {
+                if(coin.Name == coinName)
+                {
+                    register.Remove(coin);
+                    return coin;
+                }
+            }
+            return null;
+        }
+
+        private bool RegisterHasCoin(string coinName)
+        {
+            foreach(Coin coin in register)
+            {
+                if (coin.Name == coinName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void BeginTransaction(Customer customer)
         {
             Transaction(customer);
