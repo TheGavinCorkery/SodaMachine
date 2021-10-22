@@ -8,8 +8,8 @@ namespace SodaMachine
 {
     class Customer
     {
-        Wallet wallet = new Wallet();
-        Backpack backpack = new Backpack();
+        public Wallet wallet = new Wallet();
+        public Backpack backpack = new Backpack();
 
         public List<Coin> GatherCoinsFromWallet(Can can)
         {
@@ -50,7 +50,7 @@ namespace SodaMachine
         {
             if (backpack.cans.Count <= 0)
             {
-                Console.WriteLine("You have no cans in your backpack.")
+                Console.WriteLine("You have no cans in your backpack.");
             }
             else
             {
