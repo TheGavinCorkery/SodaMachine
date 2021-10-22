@@ -40,5 +40,25 @@ namespace SodaMachine
         {
             backpack.cans.Add(can);
         }
+
+        public void CheckCoinsInWallet()
+        {
+            Console.WriteLine($"You have ${wallet.totalValue} remaining.");
+        }
+
+        public void CheckCansInBackpack()
+        {
+            if (backpack.cans.Count <= 0)
+            {
+                Console.WriteLine("You have no cans in your backpack.")
+            }
+            else
+            {
+                foreach(var can in backpack.cans)
+                {
+                    Console.WriteLine(can.Name);
+                }
+            }
+        }
     }
 }
