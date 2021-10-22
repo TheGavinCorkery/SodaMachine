@@ -13,7 +13,47 @@ namespace SodaMachine
 
         public List<Coin> GatherCoinsFromWallet(Can can)
         {
-            return null;
+            bool willProceed = true;
+            List<Coin> customerPayment = new List<Coin>();
+            UserInterface.OutputText("Continue to add coins until you are ready to inser them into the machine");
+            while (willProceed == true)
+            {
+                UserInterface.DisplayCanCost(can);
+                UserInterface.DisplayPaymentValue(customerPayment);
+                int coinInt = UserInterface.CoinSelection();
+                string coinName = "";
+                switch (coinInt)
+                {
+                    case 1:
+                        coinName = "quarter";
+                        break;
+                    case 2:
+                        coinName = "dime";
+                        break;
+                    case 3:
+                        coinName = "nickle";
+                        break;
+                    case 4:
+                        coinName = "penny";
+                        break;
+                    case 5:
+                        coinName = "Done";
+                        break;
+                }
+                if (coinName == "Done")
+                {
+                    break;
+                }
+                Coin paymentCoin = GetCoinFromWallet(coinName);
+                if (paymentCoin != null)
+                {
+                    customerPayment.Add(paymentCoin);
+                }else
+                {
+                    UserInterface.OutputText("You do not have any of these coins, try again");
+                }
+            }
+            return customerPayment;
         }
         public Coin GetCoinFromWallet(string coinName)
         {
