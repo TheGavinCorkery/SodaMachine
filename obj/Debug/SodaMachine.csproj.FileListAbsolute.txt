@@ -1,0 +1,2 @@
+C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\obj\Debug\SodaMachine.csproj.AssemblyReference.cache
+C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\obj\Debug\SodaMachine.csproj.CoreCompileInputs.cache
