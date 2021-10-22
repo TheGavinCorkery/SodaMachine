@@ -46,11 +46,18 @@
     <Compile Include="Backpack.cs" />
     <Compile Include="Can.cs" />
     <Compile Include="Coin.cs" />
+    <Compile Include="Cola.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Dime.cs" />
+    <Compile Include="Nickle.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="Orange.cs" />
+    <Compile Include="Penny.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quarter.cs" />
+    <Compile Include="RootBeer.cs" />
     <Compile Include="Simulation.cs" />
     <Compile Include="SodaMachine.cs" />
     <Compile Include="UserInterface.cs" />

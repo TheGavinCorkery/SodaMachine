@@ -8,5 +8,6 @@ namespace SodaMachine
 {
     class UserInterface
     {
+        
     }
 }
