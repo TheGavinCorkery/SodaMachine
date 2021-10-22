@@ -45,7 +45,7 @@ namespace SodaMachine
 
         private void Transaction(Customer customer)
         {
-            string selectedSodaName = UserInterface.SodaSelection();
+            string selectedSodaName = UserInterface.SodaSelection(inventory);
             Can selectedSoda = GetSodaFromInventory(selectedSodaName);
             List<Coin> customerPayment = customer.GatherCoinsFromWallet(selectedSoda);
             CalculateTransaction(customerPayment, selectedSoda, customer);
