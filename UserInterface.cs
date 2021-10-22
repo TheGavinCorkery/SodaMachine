@@ -31,6 +31,7 @@ namespace SodaMachine
                     Console.WriteLine("Invalid Input Try Again.");
                 }
             }
+            return 0;
         }
 
         public static bool ValidateMainMenu(string userInput)
@@ -62,7 +63,7 @@ namespace SodaMachine
             Console.WriteLine("\n Welcome to the soda machine. " +
                 "We only take coins as payment. \n" +
                 "Would you like to make a purchase (y/n) \n");
-            string userResponse = Console.ReadLine();
+            string userResponse = Console.ReadLine().ToLower();
             if(userResponse == "yes" || userResponse == "y")
             {
                 return true;
@@ -86,22 +87,50 @@ namespace SodaMachine
 
         public static void ContinuePrompt(string text)
         {
-            //validates a yes or no response
+            //validates a yes or no response *Currently Not needed
         }
 
-        public static void SodaSelection(List<Can> inventory)
+        public static int SodaSelection(List<Can> inventory)
+        //Displays the inventory of sodas and allows for selection
         {
-            //Displays the inventory of sodas and allows for selection
+            bool invalidUserSelection = true;
+            int userSelectionInt;
+            List<Can> sodaOptions = GetUniqueCanNames(inventory);
+            while (invalidUserSelection)
+            {
+                Console.WriteLine("Please choose from the following options:");
+                int i = 1;
+                foreach (Can can in sodaOptions)
+                {
+                    Console.WriteLine($"\n \t Enter -{i}- for {can.Name} : ${can.Price}");
+                    i++;
+                }
+                string userSelection = Console.ReadLine();
+                userSelectionInt = Int32.Parse(userSelection);
+                invalidUserSelection = ValidateCanChoice(userSelectionInt);
+                if (invalidUserSelection == true)
+                {
+                    return userSelectionInt;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input Try Again.");
+                }
+            }
+            return 0;
         }
 
-        public static void ValidateCanChoice(string selection)
+        public static bool ValidateCanChoice(int selection)
+        //Validates User Can selection
         {
-            //Validates User Can selection
+
         }
 
-        public static void GetUniqueCanNames(List<Can> inventory)
+        public static List<Can> GetUniqueCanNames(List<Can> inventory)
+        //Loops through inventory to create a list of all distinct types of sodas available.
         {
-            //Loops through inventory to create a list of all distinct types of sodas available.
+            List<Can> uniqueCans = inventory.Distinct().ToList();
+            return uniqueCans;
         }
 
         public static void DisplayCanCost(Can selectedCan)
