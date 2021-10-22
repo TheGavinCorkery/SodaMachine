@@ -162,7 +162,11 @@ namespace SodaMachine
 
         private void BeginTransaction(Customer customer)
         {
-            Transaction(customer);
+            bool willProceed = UserInterface.DisplayWelcome();
+            if (willProceed == true)
+            {
+                Transaction(customer);
+            }
         }
 
         private Can GetSodaFromInventory(string s)
@@ -182,12 +186,7 @@ namespace SodaMachine
 
         private double DetermineChange(double paidAmount, double cost)
         {
-            if (paidAmount == cost){return 0.0;}
-            else if (paidAmount > cost)
-            {
-                double diff = paidAmount - cost;
-                return diff;
-            }else {return 0.0;}
+            return Math.Round(paidAmount - cost, 2);
         }
     }
 }
