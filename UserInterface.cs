@@ -31,7 +31,7 @@ namespace SodaMachine
                     Console.WriteLine("Invalid Input Try Again.");
                 }
             }
-            return 0;
+            return "0";
         }
 
         public static bool ValidateMainMenu(string userInput)
@@ -90,7 +90,7 @@ namespace SodaMachine
             //validates a yes or no response *Currently Not needed
         }
 
-        public static int SodaSelection(List<Can> inventory)
+        public static string SodaSelection(List<Can> inventory)
         //Displays the inventory of sodas and allows for selection
         {
             bool invalidUserSelection = true;
@@ -110,14 +110,14 @@ namespace SodaMachine
                 invalidUserSelection = ValidateCanChoice(userSelectionInt);
                 if (invalidUserSelection == true)
                 {
-                    return userSelectionInt;
+                    return userSelection;
                 }
                 else
                 {
                     Console.WriteLine("Invalid Input Try Again.");
                 }
             }
-            return 0;
+            return "0";
         }
 
         public static bool ValidateCanChoice(int selection)
@@ -141,14 +141,14 @@ namespace SodaMachine
         }
 
         public static void DisplayCanCost(Can selectedCan)
+        //Displays the cost of the can as the user puts coins in.
         {
-            //Displays the cost of the can as the user puts coins in.
             Console.WriteLine($"The price of a {selectedCan.Name} is ${selectedCan.Price}");
         }
 
         public static void DisplayPaymentValue(List<Coin> customerPayment)
+        //Displays the value of selected coins as customer is choosing coins to deposit
         {
-            //Displays the value of selected coins as customer is choosing coins to deposit
             double totalPaymentValue = 0.0;
             foreach (Coin coin in customerPayment)
             {
@@ -158,8 +158,8 @@ namespace SodaMachine
         }
 
         public static int CoinSelection()
+        //Prompts user to choose which coins to deposit and passes their selection in validate_coin_selection
         {
-            //Prompts user to choose which coins to deposit and passes their selection in validate_coin_selection
             bool validatedSelection = false;
             while(validatedSelection == false)
             {
@@ -198,8 +198,8 @@ namespace SodaMachine
         }
 
         public static void EndMessage(string sodaName, double changeAmount)
+        //Closing message for the user.
         {
-            //Closing message for the user.
             Console.WriteLine($"Enjoy your {sodaName}");
             if (changeAmount >= 0)
             {
