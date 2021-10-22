@@ -8,6 +8,24 @@ namespace SodaMachine
 {
     class Customer
     {
-        
+        Wallet wallet = new Wallet();
+        Backpack backpack = new Backpack();
+
+        public List<Coin> GatherCoinsFromWallet(Can can)
+        {
+            return null;
+        }
+        public Coin GetCoinFromWallet(string coin)
+        {
+            return null;
+        }
+        public void AddCoinsIntoWallet(List<Coin> coins)
+        {
+
+        }
+        public void AddCanToBackPack(Can can)
+        {
+
+        }
     }
 }
