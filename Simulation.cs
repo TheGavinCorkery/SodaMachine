@@ -8,10 +8,29 @@ namespace SodaMachine
 {
     class Simulation
     {
-        //Memeber vars
-        
-        //Const
+        public void Simulate()
+        {
+            Customer customer = new Customer();
+            SodaMachine sodaMachine = new SodaMachine();
+            bool willProceed = true;
+            while(willProceed == true)
+            {
+                string userOption = UserInterface.SimulationMainMenu();
+                if(Int32.Parse(userOption) == 0)
+                {
+                    sodaMachine.BeginTransaction(customer);
+                }else if (Int32.Parse(userOption) == 1)
+                {
+                    customer.CheckCoinsInWallet();
+                }else if (Int32.Parse(userOption) == 2)
+                {
+                    customer.CheckCansInBackpack();
+                }else
+                {
+                    willProceed = false;
+                }
 
-        //Member meths
+            }
+        }
     }
 }
