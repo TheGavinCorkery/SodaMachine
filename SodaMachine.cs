@@ -70,12 +70,12 @@ namespace SodaMachine
                     DepositCoinsIntoRegister(customerPayment);
                     customer.AddCoinsIntoWallet(customerChange);
                     customer.AddCanToBackPack(selectedCan);
-                    UserInterface.EndMessage(selectedCan, changeValue);
+                    UserInterface.EndMessage(selectedCan.Name, changeValue);
                 }
             }else if (totalPaymentValue == selectedCan.Price){
                 DepositCoinsIntoRegister(customerPayment);
                 customer.AddCanToBackPack(selectedCan);
-                UserInterface.EndMessage(selectedCan, 0);
+                UserInterface.EndMessage(selectedCan.Name, 0);
             }else
             {
                 UserInterface.OutputText("You do not have enough money to purchase this item, returning payment now.");
@@ -160,7 +160,7 @@ namespace SodaMachine
             return false;
         }
 
-        private void BeginTransaction(Customer customer)
+        public void BeginTransaction(Customer customer)
         {
             bool willProceed = UserInterface.DisplayWelcome();
             if (willProceed == true)
