@@ -35,7 +35,19 @@ namespace SodaMachine
 
         public static bool ValidateMainMenu(string userInput)
         {
-            //Validation function that checks if 'user_input' argument is an int 1-4.
+            switch (userInput)
+            {
+                case "1":
+                    return true;
+                case "2":
+                    return true;
+                case "3":
+                    return true;
+                case "4":
+                    return true;
+                default:
+                    return false;
+            }
         }
 
         public static void DisplayCustomerWalletInfo(double totalValue)
