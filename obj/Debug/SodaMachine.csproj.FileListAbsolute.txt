@@ -5,3 +5,4 @@ C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\bin\
 C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\bin\Debug\SodaMachine.pdb
 C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\obj\Debug\SodaMachine.exe
 C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\obj\Debug\SodaMachine.pdb
+C:\Users\Admin\Documents\DCC_Course\Projects\SodaMachine_CSharp\SodaMachine\obj\Debug\SodaMachine.csproj.SuggestedBindingRedirects.cache
