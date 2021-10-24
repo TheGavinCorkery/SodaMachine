@@ -100,17 +100,19 @@ namespace SodaMachine
             {
                 Console.WriteLine("Please choose from the following options:");
                 int i = 1;
-                foreach (Can can in sodaOptions)
+                foreach (Can soda in sodaOptions)
                 {
-                    Console.WriteLine($"\n \t Enter -{i}- for {can.Name} : ${can.Price}");
+                    Console.WriteLine($"\n \t Enter -{i}- for {soda.Name} : ${soda.Price}");
                     i++;
                 }
                 string userSelection = Console.ReadLine();
                 userSelectionInt = Int32.Parse(userSelection);
                 invalidUserSelection = ValidateCanChoice(userSelectionInt);
+                userSelectionInt -= 1;
                 if (invalidUserSelection == true)
                 {
-                    return userSelection;
+                    string selectedSodaName = sodaOptions[userSelectionInt].Name;
+                    return selectedSodaName;
                 }
                 else
                 {
@@ -136,14 +138,21 @@ namespace SodaMachine
         public static List<Can> GetUniqueCanNames(List<Can> inventory)
         //Loops through inventory to create a list of all distinct types of sodas available.
         {
-            List<Can> uniqueCans = inventory.Distinct().ToList();
+            List<Can> uniqueCans = new List<Can>();
+            for (int i = 0; i < 3; i++)
+            {
+                uniqueCans.Add(inventory[i]);
+            }
             return uniqueCans;
+            //List<Can> cans = inventory.Distinct().ToList();
+            //List<Can> uniqueCans = cans;
+            //return uniqueCans;
         }
 
-        public static void DisplayCanCost(Can selectedCan)
+        public static void DisplayCanCost(Can selectedSoda)
         //Displays the cost of the can as the user puts coins in.
         {
-            Console.WriteLine($"The price of a {selectedCan.Name} is ${selectedCan.Price}");
+            Console.WriteLine($"The price of a {selectedSoda.Name} is ${selectedSoda.Price}");
         }
 
         public static void DisplayPaymentValue(List<Coin> customerPayment)

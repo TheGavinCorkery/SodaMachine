@@ -11,14 +11,14 @@ namespace SodaMachine
         public Wallet wallet = new Wallet();
         public Backpack backpack = new Backpack();
 
-        public List<Coin> GatherCoinsFromWallet(Can can)
+        public List<Coin> GatherCoinsFromWallet(Can selectedSoda)
         {
             bool willProceed = true;
             List<Coin> customerPayment = new List<Coin>();
             UserInterface.OutputText("Continue to add coins until you are ready to inser them into the machine");
             while (willProceed == true)
             {
-                UserInterface.DisplayCanCost(can);
+                UserInterface.DisplayCanCost(selectedSoda);
                 UserInterface.DisplayPaymentValue(customerPayment);
                 int coinInt = UserInterface.CoinSelection();
                 string coinName = "";

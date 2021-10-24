@@ -169,11 +169,18 @@ namespace SodaMachine
             }
         }
 
-        private Can GetSodaFromInventory(string s)
+        private Can GetSodaFromInventory(string selectedSodaName)
         {
             Can selectedCan = null;
             foreach (Can can in inventory)
-            {if (can.Name == s) { selectedCan = can; inventory.Remove(can); }}
+            {
+                if (can.Name == selectedSodaName)
+                {
+                    selectedCan = can;
+                    inventory.Remove(can);
+                    return selectedCan;
+                }
+            }
             return selectedCan;
         }
 
